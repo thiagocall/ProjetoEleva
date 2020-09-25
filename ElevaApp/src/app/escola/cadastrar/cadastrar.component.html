@@ -1,0 +1,76 @@
+<app-container-sm>
+    <mat-card-header>
+        <mat-card-title>Cadastro de Escolas</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="frmCadastro">
+            <mat-tab-group>
+                <mat-tab label="Registro">
+                    <div class="tab-1">
+                            <div fxLayout fxLayout="column" fxLayoutGap="20px" fxLayoutGap.xs="0">
+                        <mat-form-field fxLayout="row" fxFlex="25" appearance="legacy">
+                            <mat-label>Nº Registro (E/CRE)</mat-label>
+                            <input formControlName="codregistro" matInput placeholder="Ex: 01.01.001">
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Nome Escola</mat-label>
+                            <input formControlName="nome" matInput>
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Diretor Reponsável</mat-label>
+                            <input formControlName="responsavel" matInput>
+                        </mat-form-field>
+                    </div>
+                </div>
+                </mat-tab>
+                <mat-tab label="Endereço">
+                    <div class="tab-1">
+                        <div fxLayout="column" fxLayoutGap="20px" fxLayoutGap.xs="0">
+                            
+                            <mat-form-field fxLayout="row" fxFlex="50" appearance="legacy" >
+                               
+                                <mat-label>CEP</mat-label>
+                                <input formControlName="cep" matInput placeholder="Ex: 20123010">
+                            </mat-form-field>
+
+                            <div fxLayout="row" fxLayoutGap="5px">
+                                <mat-form-field fxFlex="75" appearance="legacy">
+                                    <mat-label>Endereço</mat-label>
+                                    <input formControlName="endereco" matInput  placeholder="Ex: Travessa Martina">
+                                </mat-form-field>
+                                <mat-form-field fxFlex="25" appearance="legacy">
+                                    <mat-label>Número</mat-label>
+                                    <input formControlName="numero" matInput>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" fxLayoutGap="5px">
+                                <mat-form-field fxFlex="75" appearance="legacy">
+                                    <mat-label>Bairro</mat-label>
+                                    <input formControlName="bairro" matInput>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" fxLayoutGap="5px">
+                                <mat-form-field fxFlex="50" appearance="legacy">
+                                    <mat-label>Cidade</mat-label>
+                                    <input formControlName="cidade" matInput>
+                                </mat-form-field>
+                                <mat-form-field fxFlex="20" appearance="legacy">
+                                    <mat-label>UF</mat-label>
+                                    <input formControlName="coduf" matInput>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </form>
+
+    </mat-card-content>
+    <div class="button">
+        <button type="button" mat-raised-button color='primary' (click)="click()" [disabled]="frmCadastro.invalid">Incluir</button>
+    </div>
+</app-container-sm>

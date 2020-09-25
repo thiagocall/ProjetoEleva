@@ -1,0 +1,26 @@
+    <mat-toolbar class="nav-sw" color="primary">
+      <mat-toolbar-row>
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <span>Eleva Educação</span>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="escolas">Escolas</button>
+          <button mat-menu-item [matMenuTriggerFor]="turmas">Turmas</button>
+        </mat-menu>
+        
+        <mat-menu #escolas="matMenu">
+          <button mat-menu-item [routerLink]="['/escola/cadastrar']" routerLinkActive="router-link-active" >Cadastrar</button>
+          <button mat-menu-item >Consultar</button>
+        </mat-menu>
+
+        <mat-menu #turmas="matMenu">
+          <button mat-menu-item >Cadastar</button>
+          <button mat-menu-item >Consultar</button>
+          <button mat-menu-item >Horários</button>
+        </mat-menu>
+        
+      </mat-toolbar-row>
+    </mat-toolbar>
+  
