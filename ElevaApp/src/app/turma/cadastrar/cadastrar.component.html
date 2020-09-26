@@ -14,38 +14,54 @@
                                     <input formControlName="codregistro" matInput>
                                 </mat-form-field>
                                 <div fxFlex="70" fxLayoutAlign="end center">
-                                    <button type="button" mat-raised-button color='primary' (click)="openDialog()">Selecionar Turma</button>
-                                    
+                                    <button type="button" mat-raised-button color='warn' (click)="openDialog()">Selecionar Turma</button>
+                                    <!-- <button mat-fab color="warn" aria-label="Example icon button with a bookmark icon">
+                                        <mat-icon>add</mat-icon>
+                                      </button> -->
                                 </div>
                             </div>
                      
                         <mat-form-field appearance="fill">
                             <mat-label>Nome Escola</mat-label>
-                            <input matInput formControlName="codregistro">
+                            <input matInput formControlName="nome">
                         </mat-form-field>
                         
                         <div fxLayout="row" fxLayoutGap="50px">
 
                             <mat-form-field appearance="legacy" fxLayout>
                                 <mat-label>Disciplina</mat-label>
-                                <input formControlName="responsavel" matInput>
+                                <!-- <input formControlName="disciplina" matInput> -->
+                                    <mat-select formControlName="disciplina" >
+                                      <mat-option>Selecione</mat-option>
+                                      <mat-option value="option1">Geografia</mat-option>
+                                      <mat-option value="option2">História</mat-option>
+                                      <mat-option value="option3">Matemática</mat-option>
+                                      <mat-option value="option1">Física</mat-option>
+                                      <mat-option value="option2">Português</mat-option>
+                                      <mat-option value="option3">Química</mat-option>
+                                    </mat-select>
+                                
+                                <mat-error *ngIf="frmCadastro.get('disciplina').hasError('required')">
+                                    Campo obrigatório
+                                    <span><mat-icon>favorite</mat-icon></span>
+                                  </mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="legacy" fxLayout >
                                 <mat-label>Horario</mat-label>
-                                <input formControlName="email" matInput>
+                                <input formControlName="horario" matInput>
                             </mat-form-field>
                     </div>
                     <div fxLayout="row" fxLayoutGap="50px">
 
                         <mat-form-field appearance="legacy">
                             <mat-label>Disciplina</mat-label>
-                            <input formControlName="responsavel" matInput>
+                            <input formControlName="disciplina" matInput>
                         </mat-form-field>
 
                         <mat-form-field appearance="legacy">
                             <mat-label>Horario</mat-label>
-                            <input formControlName="email" matInput>
+                            <input formControlName="horario" matInput>
                         </mat-form-field>
                     </div>
                     
@@ -58,7 +74,7 @@
 
     </mat-card-content>
     <div class="button">
-        <button type="button" mat-raised-button color='accent'>Adcionar</button>
+        <button type="button" mat-raised-button color='primary'>Adcionar</button>
     </div>
 </app-container-sm>
 
@@ -93,8 +109,11 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef > Selecionar </th>
         <td mat-cell *matCellDef="let element" >
-             <button mat-button color="primary" (click)="closeDialog()"><mat-icon class="mat-icon">check</mat-icon></button>
-        </td>
+             <!-- <button mat-button color="primary" (click)="closeDialog()" (click)="selectEscola(element.codregistro)"><mat-icon class="mat-icon">check</mat-icon></button> -->
+             <button mat-icon-button color="warn" (click)="closeDialog()" (click)="selectEscola(element.codregistro)">
+                                        <mat-icon>add</mat-icon>
+                                      </button>
+                </td>
       </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

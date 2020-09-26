@@ -39,7 +39,7 @@ export class CadastrarEscolaComponent implements OnInit {
       cidade: ['',[Validators.required]],
       coduf: ['',[Validators.required]],
       responsavel: ['',[Validators.required]],
-      email: ['',[Validators.required]],
+      email: ['',[Validators.required, Validators.email]],
     })
   }
 

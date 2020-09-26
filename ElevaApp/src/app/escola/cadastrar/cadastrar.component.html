@@ -11,6 +11,10 @@
                         <mat-form-field fxLayout="row" fxFlex="25" appearance="legacy">
                             <mat-label>Nº Registro (E/CRE)</mat-label>
                             <input formControlName="codregistro" matInput placeholder="Ex: 01.01.001">
+                            <mat-error *ngIf="frmCadastro.get('codregistro').hasError('required')">
+                                O registro é obrigatório
+                                <span><mat-icon>favorite</mat-icon></span>
+                              </mat-error>
                         </mat-form-field>
                         
                         <mat-form-field appearance="legacy">
