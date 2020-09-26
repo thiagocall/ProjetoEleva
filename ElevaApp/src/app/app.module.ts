@@ -17,8 +17,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './initial/login/login.component';
 import { MatButtonModule } from '@angular/material';
 import { NavBarComponent } from './menu/nav-bar/nav-bar.component';
-import { CadastrarComponent } from './turma/cadastrar/cadastrar.component';
-import { ConsultarComponent } from './turma/consultar/consultar.component';
+import { CadastrarTurmaComponent } from './turma/cadastrar/cadastrar.component';
+import { ConsultarTurmaComponent } from './turma/consultar/consultar.component';
 import { ConsultarEscolaComponent } from './escola/consultar/consultar.component'
 import { CadastrarEscolaComponent } from './escola/cadastrar/cadastrar.component';
 import { ContainerComponent } from './ui/container/container.component';
@@ -30,8 +30,8 @@ import { DetalhesComponent } from './escola/detalhes/detalhes.component';
     AppComponent,
     LoginComponent,
     NavBarComponent,
-    CadastrarComponent,
-    ConsultarComponent,
+    CadastrarTurmaComponent,
+    ConsultarTurmaComponent,
     ConsultarEscolaComponent,
     CadastrarEscolaComponent,
     ContainerComponent,
