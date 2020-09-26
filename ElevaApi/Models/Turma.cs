@@ -6,7 +6,6 @@ namespace ElevaApi.Models
     public class Turma
     {
         public int Id { get; set; }
-        public string EscolaId { get; set; }
         public string Disciplina { get; set; }
         public DateTime HorarioInicial { get; set; }
         public DateTime HorarioFinal { get; set; }
