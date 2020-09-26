@@ -5,10 +5,11 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatCardModule, MatFormFieldModule, MatInputModule, MatTable } from '@angular/material';
 import { MatMenuModule, MatToolbarModule, MatIconModule, MatDividerModule, MatTabsModule } from '@angular/material'
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatTableModule, MatCheckboxModule } from '@angular/material'
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +21,9 @@ import { CadastrarComponent } from './turma/cadastrar/cadastrar.component';
 import { ConsultarComponent } from './turma/consultar/consultar.component';
 import { ConsultarEscolaComponent } from './escola/consultar/consultar.component'
 import { CadastrarEscolaComponent } from './escola/cadastrar/cadastrar.component';
-import { ContainerComponent } from './ui/container/container.component'
+import { ContainerComponent } from './ui/container/container.component';
+import { ContainerLgComponent } from './ui/container-lg/container-lg.component';
+import { DetalhesComponent } from './escola/detalhes/detalhes.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { ContainerComponent } from './ui/container/container.component'
     ConsultarEscolaComponent,
     CadastrarEscolaComponent,
     ContainerComponent,
+    ContainerLgComponent,
+    DetalhesComponent,
 
   ],
   imports: [
@@ -54,6 +59,9 @@ import { ContainerComponent } from './ui/container/container.component'
     ToastrModule.forRoot({
       preventDuplicates: true,
       positionClass: 'toast-top-right'}),
+    MatTableModule,
+    MatCheckboxModule,
+    
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

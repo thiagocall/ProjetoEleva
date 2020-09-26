@@ -12,13 +12,12 @@
         
         <mat-menu #escolas="matMenu">
           <button mat-menu-item [routerLink]="['/escola/cadastrar']" routerLinkActive="router-link-active" >Cadastrar</button>
-          <button mat-menu-item >Consultar</button>
+          <button mat-menu-item [routerLink]="['/escola/consultar']" routerLinkActive="router-link-active"  >Consultar</button>
         </mat-menu>
 
         <mat-menu #turmas="matMenu">
           <button mat-menu-item >Cadastar</button>
-          <button mat-menu-item >Consultar</button>
-          <button mat-menu-item >Horários</button>
+          <button mat-menu-item >Consultar</button>''
         </mat-menu>
         
       </mat-toolbar-row>
