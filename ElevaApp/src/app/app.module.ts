@@ -9,7 +9,7 @@ import { MatCardModule, MatFormFieldModule, MatInputModule, MatTable } from '@an
 import { MatMenuModule, MatToolbarModule, MatIconModule, MatDividerModule, MatTabsModule } from '@angular/material'
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatTableModule, MatCheckboxModule } from '@angular/material'
+import { MatTableModule, MatCheckboxModule, MatDialogModule } from '@angular/material'
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -61,6 +61,7 @@ import { DetalhesComponent } from './escola/detalhes/detalhes.component';
       positionClass: 'toast-top-right'}),
     MatTableModule,
     MatCheckboxModule,
+    MatDialogModule,
     
   ],
   providers: [

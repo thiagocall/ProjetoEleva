@@ -13,3 +13,6 @@
     right: 10%; 
   }
 
+  mat-dialog-content{
+    width: 35rem;
+  }

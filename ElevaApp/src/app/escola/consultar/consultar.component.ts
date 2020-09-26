@@ -33,7 +33,7 @@ export class ConsultarEscolaComponent implements OnInit {
               private router: Router) { }
 
   displayedColumns: string[] = ['codregistro', 'nome', 'endereco', 'numero','bairro','email','actions'];
-  dataSource = this.mock.ListaEscolas;
+  dataSource;
   
   filteredDataSource;
 
@@ -60,6 +60,7 @@ export class ConsultarEscolaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataSource = this.mock.ListaEscolas;
     this.filteredDataSource = this.dataSource;
   }
 
