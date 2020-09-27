@@ -24,6 +24,7 @@ import { CadastrarEscolaComponent } from './escola/cadastrar/cadastrar.component
 import { ContainerComponent } from './ui/container/container.component';
 import { ContainerLgComponent } from './ui/container-lg/container-lg.component';
 import { DetalhesComponent } from './escola/detalhes/detalhes.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { DetalhesComponent } from './escola/detalhes/detalhes.component';
     MatCheckboxModule,
     MatDialogModule,
     MatSelectModule,
-    
+    HttpClientModule,
     
   ],
   providers: [

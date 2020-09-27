@@ -15,13 +15,13 @@ namespace ElevaApi.Controllers
     [Route("api/[controller]")]
     public class EscolaController : ControllerBase
     {
+        public readonly EscolaContext _context;
+        private readonly ILogger<Escola> _logger;
 
-        public EscolaContext _context { get; }
-
-        public EscolaController(EscolaContext context)
+        public EscolaController(EscolaContext context, ILogger<Escola> logger)
         {
             this._context = context;
-            
+            this._logger = logger;
         }
        
         [HttpGet]

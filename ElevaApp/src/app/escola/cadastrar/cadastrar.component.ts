@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { EscolaService } from 'src/app/services/escola.service';
+import { Escola } from 'src/app/services/mock.service';
 
 
 @Component({
@@ -11,11 +13,14 @@ import { ToastrService } from 'ngx-toastr';
 export class CadastrarEscolaComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private escolaServ: EscolaService) { }
 
   frmCadastro: FormGroup;
 
-  click(){
+
+
+  onClick(){
 
     if(this.frmCadastro.invalid || this.frmCadastro.untouched){
 
@@ -23,9 +28,28 @@ export class CadastrarEscolaComponent implements OnInit {
         timeOut:2000,
         progressBar: false
       })
+      return false;
 
     }
-    console.log(this.frmCadastro.value)
+    const escola = this.frmCadastro.value;
+    console.log(escola);
+    this.escolaServ.postEscola(escola).subscribe(
+      response =>{
+
+        this.toastr.success("Escola incluída com sucesso", null, {
+          timeOut:2000,
+          progressBar: false
+        })
+
+      },
+      error =>{
+        this.toastr.error("Falha na inclusão", null, {
+          timeOut:2000,
+          progressBar: false
+        })
+
+      }
+    )
   }
   
   Validate(){

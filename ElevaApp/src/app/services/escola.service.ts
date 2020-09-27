@@ -17,11 +17,11 @@ getEscolas():Observable<any>{
   return this.http.get(`${this.baseUrl}escola`)
 }
 
-postEscolas(escola:Escola){
+postEscola(escola:Escola){
     return this.http.post(`${this.baseUrl}escola`,escola)
 }
 
-deleteEscolas(id:string){
+deleteEscola(id:string){
   return this.http.delete(`${this.baseUrl}escola/${id}`)
 }
 

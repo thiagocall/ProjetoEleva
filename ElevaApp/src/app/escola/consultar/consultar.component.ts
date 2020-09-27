@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { EscolaService } from 'src/app/services/escola.service';
 import {Escola, MockService} from '../../services/mock.service'
 
 // export interface PeriodicElement {
@@ -30,12 +32,38 @@ import {Escola, MockService} from '../../services/mock.service'
 export class ConsultarEscolaComponent implements OnInit {
 
   constructor( private mock: MockService,
-              private router: Router) { }
+              private router: Router,
+              private escolaServ: EscolaService,
+              private toastr: ToastrService) { }
 
   displayedColumns: string[] = ['codregistro', 'nome', 'endereco', 'numero','bairro','email','actions'];
   dataSource;
-  
   filteredDataSource;
+
+  escolas: any[];
+
+  getEscolas() {
+    
+    this.escolaServ.getEscolas().subscribe(
+      response =>{
+        this.escolas.push(... response);
+        console.log(this.escolas);
+      },
+      error =>{
+
+        this.toastr.error("Erro nos dados obtidos", null, {
+          timeOut:2000,
+          progressBar: false
+        })
+
+      }
+    )
+
+
+  }
+
+
+
 
 
   filterData(text:string){
@@ -52,7 +80,6 @@ export class ConsultarEscolaComponent implements OnInit {
     }
 
   }
-
 
   navig(el){
 
