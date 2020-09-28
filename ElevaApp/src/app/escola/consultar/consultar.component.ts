@@ -46,12 +46,13 @@ export class ConsultarEscolaComponent implements OnInit {
     
     this.escolaServ.getEscolas().subscribe(
       response =>{
-        this.escolas.push(... response);
-        console.log(this.escolas);
+        console.log(response);
+        this.dataSource = response;
+        this.filteredDataSource = this.dataSource;
       },
       error =>{
 
-        this.toastr.error("Erro nos dados obtidos", null, {
+        this.toastr.error(error.message, null, {
           timeOut:2000,
           progressBar: false
         })
@@ -59,12 +60,7 @@ export class ConsultarEscolaComponent implements OnInit {
       }
     )
 
-
   }
-
-
-
-
 
   filterData(text:string){
 
@@ -83,12 +79,12 @@ export class ConsultarEscolaComponent implements OnInit {
 
   navig(el){
 
-    this.router.navigate(['escola/' + el.codregistro + '/detalhes'])
+    this.router.navigate(['escola/' + el.codRegistro + '/detalhes'])
   }
 
   ngOnInit() {
-    this.dataSource = this.mock.ListaEscolas;
-    this.filteredDataSource = this.dataSource;
+    this.getEscolas();
+    
   }
 
 }

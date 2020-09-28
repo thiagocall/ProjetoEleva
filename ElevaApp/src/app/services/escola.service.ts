@@ -17,6 +17,10 @@ getEscolas():Observable<any>{
   return this.http.get(`${this.baseUrl}escola`)
 }
 
+getEscola(id:number):Observable<any>{
+  return this.http.get(`${this.baseUrl}escola/${id}`)
+}
+
 postEscola(escola:Escola){
     return this.http.post(`${this.baseUrl}escola`,escola)
 }

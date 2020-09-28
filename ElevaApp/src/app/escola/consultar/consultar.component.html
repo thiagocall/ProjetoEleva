@@ -7,7 +7,7 @@
     
     <div class="container" fxLayout="row" fxFlex="100">
 
-    <table mat-table [dataSource]="filteredDataSource.slice(0,10)" class="mat-elevation-z8">
+    <table mat-table [dataSource]="filteredDataSource?.slice(0,10)" class="mat-elevation-z8">
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
@@ -15,7 +15,7 @@
         <!-- Position Column -->
         <ng-container matColumnDef="codregistro">
           <th mat-header-cell *matHeaderCellDef>Código</th>
-          <td mat-cell *matCellDef="let element"> {{element.codregistro}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.codRegistro}} </td>
         </ng-container>
       
         <!-- Name Column -->
@@ -46,7 +46,6 @@
             <td mat-cell *matCellDef="let element"> {{element.email}} </td>
           </ng-container>
 
-        <!-- TEst Columns -->
 
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef > Detalhes </th>

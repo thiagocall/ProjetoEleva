@@ -16,12 +16,10 @@ namespace ElevaApi.Controllers
     public class EscolaController : ControllerBase
     {
         public readonly EscolaContext _context;
-        private readonly ILogger<Escola> _logger;
 
-        public EscolaController(EscolaContext context, ILogger<Escola> logger)
+        public EscolaController(EscolaContext context)
         {
             this._context = context;
-            this._logger = logger;
         }
        
         [HttpGet]
@@ -29,13 +27,27 @@ namespace ElevaApi.Controllers
         {
             try
             {
-                List<Escola> Escolas = await this._context.Escolas.ToListAsync();
+                var Escolas = await this._context.Escolas.ToArrayAsync();
                 return Ok(Escolas);
             }
             catch (System.Exception)
             {
-                
                 return StatusCode(StatusCodes.Status500InternalServerError, "Erro ao obter turmas."); 
+            }
+        }
+
+        [HttpGet("{codreg}")]
+        public async Task<IActionResult> Get(string codreg)
+        {
+            try
+            {
+                
+                var Escola = await this._context.Escolas.FirstOrDefaultAsync(e => e.CodRegistro == codreg);
+                return Ok(Escola);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Erro ao obter Escolas."); 
             }
         }
 
@@ -44,7 +56,8 @@ namespace ElevaApi.Controllers
         {
             try 
             {
-                await this._context.Escolas.AddAsync(escola);
+                this._context.Escolas.Add(escola);
+                this._context.SaveChanges();
                 return StatusCode(StatusCodes.Status204NoContent);
             }
 
@@ -65,6 +78,7 @@ namespace ElevaApi.Controllers
                 };
                 
                 this._context.Escolas.Remove(escola);
+                this._context.SaveChanges();
                 return  StatusCode(StatusCodes.Status204NoContent);
 
             }

@@ -41,7 +41,7 @@
                             <mat-form-field fxLayout="row" fxFlex="50" appearance="legacy" >
                                
                                 <mat-label>CEP</mat-label>
-                                <input formControlName="cep" matInput placeholder="Ex: 20123010">
+                                <input formControlName="cep" matInput placeholder="Ex: 20123010" (change)="getAddressByCep($event.target.value)">
                             </mat-form-field>
 
                             <div fxLayout="row" fxLayoutGap="5px">
@@ -80,6 +80,6 @@
 
     </mat-card-content>
     <div class="button">
-        <button type="button" mat-raised-button color='primary' (click)="onClick()" [disabled]="frmCadastro.invalid">Incluir</button>
+        <button type="button" mat-raised-button color='primary' (click)="Add()" [disabled]="frmCadastro.invalid">Incluir</button>
     </div>
 </app-container-sm>
