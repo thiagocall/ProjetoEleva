@@ -59,7 +59,6 @@ export class ConsultarEscolaComponent implements OnInit {
 
       }
     )
-
   }
 
   filterData(text:string){

@@ -41,7 +41,6 @@ namespace ElevaApi.Controllers
         {
             try
             {
-                
                 var Escola = await this._context.Escolas.FirstOrDefaultAsync(e => e.CodRegistro == codreg);
                 return Ok(Escola);
             }
