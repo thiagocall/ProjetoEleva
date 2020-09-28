@@ -61,8 +61,22 @@ export class ConsultarEscolaComponent implements OnInit {
     )
   }
 
-  filterData(text:string){
+  deleteEscola(id){
+    this.escolaServ.deleteEscola(id).subscribe(
+      response =>{
+        this.toastr.success("Item excluído.", null, {
+          progressBar:false,
+          timeOut:2000
+        });
+        this.getEscolas();
+      },
+      error =>{
+        this.toastr.success("Erro ao Excluir item.");
+      }
+    )
+  }
 
+  filterData(text:string){
     
     if(text.length >= 3){
       console.log(text)

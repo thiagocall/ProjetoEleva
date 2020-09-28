@@ -56,7 +56,6 @@ export class CadastrarEscolaComponent implements OnInit {
 
   setCep(cep){
 
-    
     this.frmCadastro.patchValue({"endereco": cep.logradouro,
                                  "bairro":cep.bairro,
                                  "cidade":cep.localidade,
@@ -64,8 +63,6 @@ export class CadastrarEscolaComponent implements OnInit {
                                  });
 
   }
-
-
 
   Add(){
 
@@ -101,12 +98,12 @@ export class CadastrarEscolaComponent implements OnInit {
   
   Validate(){
     this.frmCadastro = this.fb.group({
-      codregistro: ['',[Validators.required]],
+      codregistro: ['',[Validators.required, Validators.pattern(/^\d{2}.\d{2}.\d{3}/)]],
       nome: ['',[Validators.required]],
       endereco: ['',[Validators.required]],
       numero: ['',[Validators.required]],
       bairro: ['',[Validators.required]],
-      cep: ['',[Validators.required]],
+      cep: ['',[Validators.required, Validators.pattern(/^\d{8}/)]],
       cidade: ['',[Validators.required]],
       coduf: ['',[Validators.required]],
       responsavel: ['',[Validators.required]],

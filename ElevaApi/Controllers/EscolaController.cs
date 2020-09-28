@@ -32,7 +32,7 @@ namespace ElevaApi.Controllers
             }
             catch (System.Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Erro ao obter turmas."); 
+                return StatusCode(StatusCodes.Status500InternalServerError, "Erro ao obter escolas."); 
             }
         }
 
@@ -68,14 +68,11 @@ namespace ElevaApi.Controllers
         }
 
         [HttpDelete("{_id}")]
-        public ActionResult Delete(int _id){
+        public async Task<IActionResult> Delete(string _id){
 
             try
             {
-                var escola = new Escola{
-                    Id = _id
-                };
-                
+                var escola = await this._context.Escolas.FirstOrDefaultAsync(e => e.CodRegistro == _id);
                 this._context.Escolas.Remove(escola);
                 this._context.SaveChanges();
                 return  StatusCode(StatusCodes.Status204NoContent);

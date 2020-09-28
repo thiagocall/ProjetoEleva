@@ -15,6 +15,10 @@
                                 O registro é obrigatório
                                 <span><mat-icon>favorite</mat-icon></span>
                               </mat-error>
+                              <mat-error *ngIf="frmCadastro.get('codregistro').hasError('pattern')">
+                                Favor seguir padrão indicado
+                                <span><mat-icon>thumb_up</mat-icon></span>
+                              </mat-error>
                         </mat-form-field>
                         
                         <mat-form-field appearance="legacy">
