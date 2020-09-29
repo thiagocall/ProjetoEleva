@@ -20,7 +20,14 @@ export class CadastrarEscolaComponent implements OnInit {
 
   frmCadastro: FormGroup;
 
+  selectedIndex: number = 0;
 
+
+  nextStep() {
+    if (this.selectedIndex != 2) {
+      this.selectedIndex = this.selectedIndex + 1;
+    }
+  }
 
   getAddressByCep(cep:string){
 

@@ -4,7 +4,7 @@
     </mat-card-header>
     <mat-card-content>
         <form [formGroup]="frmCadastro">
-            <mat-tab-group>
+            <mat-tab-group [(selectedIndex)]="selectedIndex">
                 <mat-tab label="Registro">
                     <div class="tab-1">
                             <div fxLayout fxLayout="column" fxLayoutGap="20px" fxLayoutGap.xs="0">
@@ -84,6 +84,9 @@
 
     </mat-card-content>
     <div class="button">
-        <button type="button" mat-raised-button color='primary' (click)="Add()" [disabled]="frmCadastro.invalid">Incluir</button>
+        <button *ngIf="this.selectedIndex == 1" type="button" mat-raised-button color='primary' (click)="Add()" [disabled]="frmCadastro.invalid">Incluir</button>
+        <button *ngIf="this.selectedIndex == 0" type="button" mat-raised-button color='primary' (click)="nextStep()">Endereço
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
     </div>
 </app-container-sm>
