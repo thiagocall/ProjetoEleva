@@ -24,8 +24,6 @@
                             </mat-form-field>
 
 
-                            <div class="container" fxLayout="column" fxFlex="100">
-
                                 <table mat-table [dataSource]="filteredDataSourceTurma?.slice(0,10)" class="mat-elevation-z8">
                           
                                   <ng-container matColumnDef="escola">
@@ -68,9 +66,6 @@
                                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                                 </table>
-                              </div>
-
-
                     
                         </div>
                     </div>

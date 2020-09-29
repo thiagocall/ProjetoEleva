@@ -16,3 +16,7 @@
   mat-dialog-content{
     width: 35rem;
   }
+
+  table{
+    width: 100%;
+}
