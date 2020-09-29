@@ -1,0 +1,18 @@
+.tab-1{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 2%;
+
+}
+
+  .button {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 10%;
+    right: 10%; 
+  }
+
+  mat-dialog-content{
+    width: 35rem;
+  }

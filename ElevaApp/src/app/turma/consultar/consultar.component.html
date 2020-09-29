@@ -1,1 +1,128 @@
-<p>consultar works!</p>
+<app-container-lg>
+    <mat-card-header>
+        <mat-card-title>Consultar Turmas</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="frmCadastro">
+            <mat-tab-group>
+                <mat-tab label="Turmas">
+                    <div class="tab-1">
+                        <div fxLayout fxLayout="column" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                            <div fxLayout fxLayout="row " fxLayoutGap="35">
+                                <mat-form-field fxFlex="35" appearance="fill">
+                                    <mat-label>Nº Registro (E/CRE)</mat-label>
+                                    <input formControlName="codRegistro" matInput>
+                                </mat-form-field>
+                                <div fxFlex="70" fxLayoutAlign="end center">
+                                    <button type="button" mat-raised-button color='warn' (click)="openDialog()">Selecionar Turma</button>
+                                </div>
+                            </div>
+                            
+                            <mat-form-field appearance="fill">
+                                <mat-label>Nome Escola</mat-label>
+                                <input matInput formControlName="nome">
+                            </mat-form-field>
+
+
+                            <div class="container" fxLayout="column" fxFlex="100">
+
+                                <table mat-table [dataSource]="filteredDataSourceTurma?.slice(0,10)" class="mat-elevation-z8">
+                          
+                                  <ng-container matColumnDef="escola">
+                                    <th mat-header-cell *matHeaderCellDef>Escola</th>
+                                    <td mat-cell *matCellDef="let element"> {{element?.escola.nome}} </td>
+                                  </ng-container>   
+                          
+                                  <ng-container matColumnDef="disciplina">
+                                    <th mat-header-cell *matHeaderCellDef> Disciplina </th>
+                                    <td mat-cell *matCellDef="let element"> {{element?.disciplina}} </td>
+                                  </ng-container>
+                                  
+                                  <ng-container matColumnDef="diaDaSemana">
+                                    <th mat-header-cell *matHeaderCellDef> Dia </th>
+                                    <td mat-cell *matCellDef="let element"> {{element?.diaDaSemana}} </td>
+                                  </ng-container>
+
+                                  
+                                  <ng-container matColumnDef="horarioInicial">
+                                    <th mat-header-cell *matHeaderCellDef> Inicio </th>
+                                    <td mat-cell *matCellDef="let element"> {{element?.horarioInicial}} </td>
+                                  </ng-container>
+
+                          
+                                  <!-- Symbol Column -->
+                                  <ng-container matColumnDef="horarioFinal">
+                                    <th mat-header-cell *matHeaderCellDef> Fim </th>
+                                    <td mat-cell *matCellDef="let element"> {{element?.horarioFinal}} </td>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="actions">
+                                    <th mat-header-cell *matHeaderCellDef > Deletar </th>
+                                    <td mat-cell *matCellDef="let element" >
+                                         <button mat-icon-button color="warn" (click)="closeDialog()" (click)="deleteTurma(element?.id, element?.escola?.codRegistro)">
+                                                                    <mat-icon>delete</mat-icon>
+                                                                  </button>
+                                            </td>
+                                  </ng-container>
+                          
+                                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                              </div>
+
+
+                    
+                        </div>
+                    </div>
+
+                </mat-tab>
+                
+            </mat-tab-group>
+        </form>
+
+        
+
+    </mat-card-content>
+</app-container-lg>
+
+<ng-template #dialogRef>
+<h2 mat-dialog-title>Selecione a Escola</h2>
+<mat-dialog-content class="mat-typography">
+ <div fxLayout fxLayout="column">
+    <mat-form-field fxLayout="row" fxFlex="50" appearance="legacy">
+        <input  matInput placeholder="Pesquise a Escola" (keyup)="filterData($event.target.value)">
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+ Teste
+ <table mat-table [dataSource]="filteredDataSource.slice(0,10)" class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="codregistro">
+      <th mat-header-cell *matHeaderCellDef>Código</th>
+      <td mat-cell *matCellDef="let element"> {{element.codRegistro}} </td>
+    </ng-container>
+  
+
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef > Selecionar </th>
+        <td mat-cell *matCellDef="let element" >
+             <button mat-icon-button color="warn" (click)="closeDialog()" (click)="selectEscola(element.codRegistro)">
+                                        <mat-icon>add</mat-icon>
+                                      </button>
+                </td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsEscola"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsEscola;"></tr>
+  </table>
+</div>
+</mat-dialog-content>
+</ng-template>
+
+

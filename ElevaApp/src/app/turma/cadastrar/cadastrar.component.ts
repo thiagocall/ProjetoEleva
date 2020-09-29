@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import {MatDialog} from '@angular/material/dialog';
 import { ViewChild, TemplateRef } from '@angular/core';
-import { Escola, MockService } from 'src/app/services/mock.service';
 import { EscolaService } from 'src/app/services/escola.service';
+import { TurmaService } from 'src/app/services/turma.service';
 
 @Component({
   selector: 'app-cadastrar',
@@ -19,8 +19,8 @@ export class CadastrarTurmaComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private toastr: ToastrService,
               public dialog: MatDialog,
-              private mock: MockService,
-              private escolaServ: EscolaService) { }
+              private escolaServ: EscolaService,
+              private turmaService: TurmaService) { }
 
     frmCadastro: FormGroup;
     displayedColumns: string[] = ['codregistro', 'nome','actions'];
@@ -118,15 +118,29 @@ export class CadastrarTurmaComponent implements OnInit {
 
   Add(){
 
-    if(this.frmCadastro.valid){
+    if(this.frmCadastro.valid && !(this.frmCadastro.get("codRegistro").value == "")){
 
         if(this.HorarioIsValid()){
-         // console.log(this.frmCadastro.getRawValue())
 
-          this.toastr.success("Turma Cadastrada",null,{
-            progressBar:false,
-            timeOut:2000
-          })
+          console.log(this.frmCadastro.value)
+          const turma = this.frmCadastro.value;
+          turma.horarioInicial = this.Schedules.get(turma.horarioInicial)
+          turma.horarioFinal = this.Schedules.get(turma.horarioFinal)
+          turma.codRegistro = this.frmCadastro.get("codRegistro").value;
+          this.turmaService.postTurma(turma).subscribe(
+            res=>{
+              console.log(res)
+              this.toastr.success("Turma Cadastrada",null,{
+                progressBar:false,
+                timeOut:2000
+              })
+              this.frmCadastro.reset();
+            },
+            err =>{
+
+            }
+          )
+
         }
     }else{
         this.toastr.error("Erro nos dados preenchidos",null,{
@@ -135,16 +149,15 @@ export class CadastrarTurmaComponent implements OnInit {
         })
       }
 
-
-
   }
+
 
 
 
   Validate(){
     this.frmCadastro = this.fb.group({
-      codRegistro: [{value: '', disabled: true},[Validators.required]],
-      nome: [{value: '', disabled: true},[Validators.required]],
+      codRegistro: [{value: '', disabled: true}],
+      nome: [{value: '', disabled: true}],
       disciplina: ['',[Validators.required]],
       horarioInicial: ['',[Validators.required]],
       horarioFinal: ['',[Validators.required]],

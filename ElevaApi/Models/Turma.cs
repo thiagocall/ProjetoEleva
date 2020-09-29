@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ElevaApi.Models
 
@@ -10,7 +11,10 @@ namespace ElevaApi.Models
         public string HorarioInicial { get; set; }
         public string HorarioFinal { get; set; }
         public string DiaDaSemana { get; set; }
+        public virtual int? EscolaId {get; set; }
         public Escola Escola {get; set;}
+        [NotMapped]
+        public string codRegistro { get; set; }
 
     }
 

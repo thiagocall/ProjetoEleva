@@ -22,29 +22,14 @@ namespace ElevaApi.Controllers
             this._context = context;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get(){
+        [HttpGet("item/{_id}")]
+        public async Task<IActionResult> GetItem(string _id){
 
             try
             {
+                var id = Convert.ToInt32(_id);
                 var Turmas = await this._context.Turmas
-                                       .ToArrayAsync();
-                return Ok(Turmas);
-            }
-            catch (System.Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Erro ao obter turmas."); 
-            }
-
-        }
-
-        [HttpGet("{_id}")]
-        public async Task<IActionResult> Get(string _id){
-
-            try
-            {
-                var Turmas = this._context.Turmas
-                                 .FirstOrDefault(x => x.Escola.CodRegistro == _id);
+                                       .FindAsync(id);
                 return Ok(Turmas);
             }
             catch (System.Exception)
@@ -54,14 +39,34 @@ namespace ElevaApi.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Turma Turma){
+        [HttpGet("{_id}")]
+        public async Task<IActionResult> Get(string _id){
 
             try
             {
-                // await this._context.Turmas.AddAsync(Turma);
-                // return StatusCode(StatusCodes.Status204NoContent);
-                return Ok(Turma);
+                var Turmas = await this._context.Turmas
+                                 .Where(x => x.Escola.CodRegistro == _id)
+                                 .Include(tu => tu.Escola).ToArrayAsync();
+                return Ok(Turmas);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Erro ao obter turmas da escola."); 
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Turma Turma) {
+
+            try
+            {
+                Turma.EscolaId  = this._context.Escolas
+                                      .FirstOrDefault(e => e.CodRegistro == Turma.codRegistro)
+                                      .Id;
+                await this._context.Turmas.AddAsync(Turma);
+                this._context.SaveChanges();
+                return StatusCode(StatusCodes.Status204NoContent);
             }
             catch (System.Exception)
             {
@@ -74,7 +79,6 @@ namespace ElevaApi.Controllers
 
             try
             {
-
                 var Turma = new Turma(){
                     Id = Convert.ToInt32(_id)
                 };

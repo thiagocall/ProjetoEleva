@@ -61,7 +61,6 @@ export class CadastrarEscolaComponent implements OnInit {
                                  "cidade":cep.localidade,
                                  "coduf":cep.uf
                                  });
-
   }
 
   Add(){

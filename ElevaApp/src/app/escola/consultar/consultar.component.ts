@@ -71,7 +71,7 @@ export class ConsultarEscolaComponent implements OnInit {
         this.getEscolas();
       },
       error =>{
-        this.toastr.success("Erro ao Excluir item.");
+        this.toastr.error("Erro ao Excluir item.");
       }
     )
   }
