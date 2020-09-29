@@ -9,7 +9,7 @@ import { MatCardModule, MatFormFieldModule, MatInputModule, MatTable } from '@an
 import { MatMenuModule, MatToolbarModule, MatIconModule, MatDividerModule, MatTabsModule } from '@angular/material'
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatTableModule, MatCheckboxModule } from '@angular/material'
+import { MatTableModule, MatCheckboxModule, MatDialogModule, MatSelectModule } from '@angular/material'
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,21 +17,22 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './initial/login/login.component';
 import { MatButtonModule } from '@angular/material';
 import { NavBarComponent } from './menu/nav-bar/nav-bar.component';
-import { CadastrarComponent } from './turma/cadastrar/cadastrar.component';
-import { ConsultarComponent } from './turma/consultar/consultar.component';
+import { CadastrarTurmaComponent } from './turma/cadastrar/cadastrar.component';
+import { ConsultarTurmaComponent } from './turma/consultar/consultar.component';
 import { ConsultarEscolaComponent } from './escola/consultar/consultar.component'
 import { CadastrarEscolaComponent } from './escola/cadastrar/cadastrar.component';
 import { ContainerComponent } from './ui/container/container.component';
 import { ContainerLgComponent } from './ui/container-lg/container-lg.component';
 import { DetalhesComponent } from './escola/detalhes/detalhes.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavBarComponent,
-    CadastrarComponent,
-    ConsultarComponent,
+    CadastrarTurmaComponent,
+    ConsultarTurmaComponent,
     ConsultarEscolaComponent,
     CadastrarEscolaComponent,
     ContainerComponent,
@@ -61,6 +62,9 @@ import { DetalhesComponent } from './escola/detalhes/detalhes.component';
       positionClass: 'toast-top-right'}),
     MatTableModule,
     MatCheckboxModule,
+    MatDialogModule,
+    MatSelectModule,
+    HttpClientModule,
     
   ],
   providers: [

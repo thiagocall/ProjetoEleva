@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MockService } from 'src/app/services/mock.service';
+import { EscolaService } from 'src/app/services/escola.service';
 
 @Component({
   selector: 'app-detalhes',
@@ -11,18 +11,33 @@ export class DetalhesComponent implements OnInit {
 
   constructor(private router:Router, 
               public route: ActivatedRoute,
-              private mock: MockService) { }
+              public escolaServ: EscolaService) { }
 
-  data;
+  Escola;
 
-  get Escola() {
-    return this.mock.ListaEscolas.find(x => x.codregistro == this.data)
+  getEscola(reg) {
+
+    console.log(reg)
+    
+    try {
+      this.escolaServ.getEscola(reg).subscribe(
+        res =>{
+          this.Escola = res;
+        }, err =>{
+          this.Escola = null;
+        }
+      )
+      
+    } catch {
+      this.Escola = null;
+    }
+
   }
 
   ngOnInit() {
 
-    this.data = this.route.snapshot.paramMap.get("codregistro");
-    console.log(this.data)
+    ;
+    this.getEscola(this.route.snapshot.paramMap.get("codregistro"));
 
   }
 

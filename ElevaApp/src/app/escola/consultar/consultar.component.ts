@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { EscolaService } from 'src/app/services/escola.service';
 import {Escola, MockService} from '../../services/mock.service'
 
 // export interface PeriodicElement {
@@ -30,16 +32,51 @@ import {Escola, MockService} from '../../services/mock.service'
 export class ConsultarEscolaComponent implements OnInit {
 
   constructor( private mock: MockService,
-              private router: Router) { }
+              private router: Router,
+              private escolaServ: EscolaService,
+              private toastr: ToastrService) { }
 
   displayedColumns: string[] = ['codregistro', 'nome', 'endereco', 'numero','bairro','email','actions'];
-  dataSource = this.mock.ListaEscolas;
-  
+  dataSource;
   filteredDataSource;
 
+  escolas: any[];
+
+  getEscolas() {
+    
+    this.escolaServ.getEscolas().subscribe(
+      response =>{
+        console.log(response);
+        this.dataSource = response;
+        this.filteredDataSource = this.dataSource;
+      },
+      error =>{
+
+        this.toastr.error(error.message, null, {
+          timeOut:2000,
+          progressBar: false
+        })
+
+      }
+    )
+  }
+
+  deleteEscola(id){
+    this.escolaServ.deleteEscola(id).subscribe(
+      response =>{
+        this.toastr.success("Item excluído.", null, {
+          progressBar:false,
+          timeOut:2000
+        });
+        this.getEscolas();
+      },
+      error =>{
+        this.toastr.error("Erro ao Excluir item.");
+      }
+    )
+  }
 
   filterData(text:string){
-
     
     if(text.length >= 3){
       console.log(text)
@@ -53,14 +90,14 @@ export class ConsultarEscolaComponent implements OnInit {
 
   }
 
-
   navig(el){
 
-    this.router.navigate(['escola/' + el.codregistro + '/detalhes'])
+    this.router.navigate(['escola/' + el.codRegistro + '/detalhes'])
   }
 
   ngOnInit() {
-    this.filteredDataSource = this.dataSource;
+    this.getEscolas();
+    
   }
 
 }

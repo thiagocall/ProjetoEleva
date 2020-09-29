@@ -14,19 +14,11 @@ export interface Escola{
 }
 
 const ESCOLAS: Escola[] =[
-  {codregistro: '01.01.001', bairro: 'Abolição', endereco: 'Rua São José', nome: 'Escola Municipal João Gullart', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
-  {codregistro: '01.01.002', bairro: 'Méier', endereco: 'Rua Arquias Cordeiro', nome: 'Escola Municipal Republica do Peru', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 180, responsavel:'João Roberto' },
-  {codregistro: '01.01.003', bairro: 'Cachambi', endereco: 'Rua Cisne Maia', nome: 'Escola Municipal Maria Rita', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
-  {codregistro: '01.01.004', bairro: 'Cachambi', endereco: 'Rua Cisne Maia', nome: 'Escola Municipal Maria Rita', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
-  {codregistro: '01.01.005', bairro: 'Cachambi', endereco: 'Rua Cisne Maia', nome: 'Escola Municipal Maria Rita', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
-  {codregistro: '01.01.006', bairro: 'Cachambi', endereco: 'Rua Cisne Maia', nome: 'Escola Municipal Maria Rita', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
-  {codregistro: '01.01.007', bairro: 'Cachambi', endereco: 'Rua Cisne Maia', nome: 'Escola Municipal Maria Rita', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
-  {codregistro: '01.01.008', bairro: 'Cachambi', endereco: 'Rua Cisne Maia', nome: 'Escola Municipal Maria Rita', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
-  {codregistro: '01.01.009', bairro: 'Cachambi', endereco: 'Rua Cisne Maia', nome: 'Escola Municipal Maria Rita', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
-  {codregistro: '01.01.010', bairro: 'Cachambi', endereco: 'Rua Cisne Maia', nome: 'Escola Municipal Maria Rita', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
-  {codregistro: '01.01.011', bairro: 'Cachambi', endereco: 'Rua Cisne Maia', nome: 'Escola Municipal Maria Rita', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
-  {codregistro: '01.01.012', bairro: 'Cachambi', endereco: 'Rua Cisne Maia', nome: 'Escola Municipal Maria Rita', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
-  {codregistro: '01.01.013', bairro: 'Cachambi', endereco: 'Rua Cisne Maia', nome: 'Escola Municipal Maria Rita', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'Joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
+  {codregistro: '01.01.001', bairro: 'Abolição', endereco: 'Rua São José', nome: 'Escola Municipal João Gullart', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'joao@escola.com.br', numero: 200, responsavel:'João Roberto' },
+  {codregistro: '01.01.002', bairro: 'Méier', endereco: 'Rua Arquias Cordeiro', nome: 'Escola Municipal Republica do Peru', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'luiz@escola.com.br', numero: 180, responsavel:'Luiz Sergio' },
+  {codregistro: '01.01.003', bairro: 'Todos os Santos', endereco: 'Rua Santos Titara', nome: 'Escola Municipal Acre', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'elizabeth@escola.com.br', numero: 150, responsavel:'Elizabeth Mendes' },
+  {codregistro: '01.01.004', bairro: 'Pilares', endereco: 'Rua Pereira Nunes', nome: 'Escola Municipal Tagore', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'augusto@escola.com.br', numero: 87, responsavel:'Augosto José' },
+  {codregistro: '01.01.005', bairro: 'Engenho de Dentro', endereco: 'Rua Jose dos Reis', nome: 'Escola Municipal Bolivar', cep: 20001001, cidade: 'Rio de Janeiro', coduf: 'RJ', email: 'mario@escola.com.br', numero: 390, responsavel:'Mario Silva' }
 
 ]
 

@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ElevaApi.Data;
 
 namespace ElevaApi
 {
@@ -22,13 +24,15 @@ namespace ElevaApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            //services.AddDbContext<AppIdentityContext>(options => options.UseNpgsql(Configuration.GetSection("HerokuPostgres").Value));
+            services.AddDbContext<EscolaContext>(options => options.UseNpgsql(Configuration.GetSection("HerokuPostgres").Value));
+            services.AddCors();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -36,7 +40,11 @@ namespace ElevaApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseRouting();
 
@@ -46,6 +54,7 @@ namespace ElevaApi
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }

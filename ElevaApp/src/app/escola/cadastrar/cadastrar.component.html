@@ -11,6 +11,14 @@
                         <mat-form-field fxLayout="row" fxFlex="25" appearance="legacy">
                             <mat-label>Nº Registro (E/CRE)</mat-label>
                             <input formControlName="codregistro" matInput placeholder="Ex: 01.01.001">
+                            <mat-error *ngIf="frmCadastro.get('codregistro').hasError('required')">
+                                O registro é obrigatório
+                                <span><mat-icon>favorite</mat-icon></span>
+                              </mat-error>
+                              <mat-error *ngIf="frmCadastro.get('codregistro').hasError('pattern')">
+                                Favor seguir padrão indicado
+                                <span><mat-icon>thumb_up</mat-icon></span>
+                              </mat-error>
                         </mat-form-field>
                         
                         <mat-form-field appearance="legacy">
@@ -37,7 +45,7 @@
                             <mat-form-field fxLayout="row" fxFlex="50" appearance="legacy" >
                                
                                 <mat-label>CEP</mat-label>
-                                <input formControlName="cep" matInput placeholder="Ex: 20123010">
+                                <input formControlName="cep" matInput placeholder="Ex: 20123010" (change)="getAddressByCep($event.target.value)">
                             </mat-form-field>
 
                             <div fxLayout="row" fxLayoutGap="5px">
@@ -76,6 +84,6 @@
 
     </mat-card-content>
     <div class="button">
-        <button type="button" mat-raised-button color='primary' (click)="click()" [disabled]="frmCadastro.invalid">Incluir</button>
+        <button type="button" mat-raised-button color='primary' (click)="Add()" [disabled]="frmCadastro.invalid">Incluir</button>
     </div>
 </app-container-sm>

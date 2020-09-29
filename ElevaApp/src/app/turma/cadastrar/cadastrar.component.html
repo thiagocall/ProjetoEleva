@@ -1,1 +1,150 @@
-<p>cadastrar works!</p>
+<app-container-sm>
+    <mat-card-header>
+        <mat-card-title>Cadastro de Turmas</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="frmCadastro">
+            <mat-tab-group>
+                <mat-tab label="Turmas">
+                    <div class="tab-1">
+                        <div fxLayout fxLayout="column" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                            <div fxLayout fxLayout="row " fxLayoutGap="35">
+                                <mat-form-field fxFlex="35" appearance="fill">
+                                    <mat-label>Nº Registro (E/CRE)</mat-label>
+                                    <input formControlName="codRegistro" matInput>
+                                </mat-form-field>
+                                <div fxFlex="70" fxLayoutAlign="end center">
+                                    <button type="button" mat-raised-button color='warn' (click)="openDialog()">Selecionar Escola</button>
+                                </div>
+                            </div>
+                     
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nome Escola</mat-label>
+                            <input matInput formControlName="nome">
+                        </mat-form-field>
+                        
+                        <div fxLayout="row" fxLayoutGap="50px">
+
+                            <mat-form-field appearance="legacy" fxLayout>
+                                <mat-label>Disciplina</mat-label>
+                                    <mat-select formControlName="disciplina" >
+                                      <mat-option>Selecione</mat-option>
+                                      <mat-option value="Geografia">Geografia</mat-option>
+                                      <mat-option value="História">História</mat-option>
+                                      <mat-option value="Matemática">Matemática</mat-option>
+                                      <mat-option value="Física">Física</mat-option>
+                                      <mat-option value="Português">Português</mat-option>
+                                      <mat-option value="Química">Química</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="frmCadastro.get('disciplina').hasError('required')">
+                                        Campo obrigatório
+                                        <span><mat-icon>favorite</mat-icon></span>
+                                      </mat-error>
+                                
+                            </mat-form-field>
+                            <mat-form-field appearance="legacy" fxLayout>
+                                <mat-label>Dia da Semana</mat-label>
+                                    <mat-select formControlName="diaDaSemana" >
+                                      <mat-option>Selecione</mat-option>
+                                      <mat-option value="Seg">Seg</mat-option>
+                                      <mat-option value="Ter">Ter</mat-option>
+                                      <mat-option value="Qua">Qua</mat-option>
+                                      <mat-option value="Qui">Qui</mat-option>
+                                      <mat-option value="Sex">Sex</mat-option>
+                                      <mat-option value="Sab">Sab</mat-option>
+                                    </mat-select>
+                                
+                            </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="50px">
+
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Horario Inicial</mat-label>
+                            <mat-select formControlName="horarioInicial" >
+                                <mat-option>Selecione</mat-option>
+                                <mat-option value="1">08:00</mat-option>
+                                <mat-option value="2">09:00</mat-option>
+                                <mat-option value="3">10:00</mat-option>
+                                <mat-option value="4">11:00</mat-option>
+                                <mat-option value="5">12:00</mat-option>
+                                <mat-option value="6">13:00</mat-option>
+                                <mat-option value="7">14:00</mat-option>
+                                <mat-option value="8">15:00</mat-option>
+                                <mat-option value="9">16:00</mat-option>
+                                <mat-option value="10">17:00</mat-option>
+                              </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Horario Final</mat-label>
+                            <mat-select formControlName="horarioFinal" >
+                                <mat-option>Selecione</mat-option>
+                                <mat-option value="1">08:00</mat-option>
+                                <mat-option value="2">09:00</mat-option>
+                                <mat-option value="3">10:00</mat-option>
+                                <mat-option value="4">11:00</mat-option>
+                                <mat-option value="5">12:00</mat-option>
+                                <mat-option value="6">13:00</mat-option>
+                                <mat-option value="7">14:00</mat-option>
+                                <mat-option value="8">15:00</mat-option>
+                                <mat-option value="9">16:00</mat-option>
+                                <mat-option value="10">17:00</mat-option>
+                              </mat-select>
+                        </mat-form-field>
+                    </div>
+                    
+                    </div>
+                </div>
+                </mat-tab>
+                
+            </mat-tab-group>
+        </form>
+
+    </mat-card-content>
+    <div class="button">
+        <button type="button" mat-raised-button color='primary' (click)="Add()">Adicionar</button>
+    </div>
+</app-container-sm>
+
+<ng-template #dialogRef>
+<h2 mat-dialog-title>Selecione a Escola</h2>
+<mat-dialog-content class="mat-typography">
+    <div>
+        <mat-form-field  appearance="legacy">
+            <input  matInput placeholder="Pesquise a Escola" (keyup)="filterData($event.target.value)">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <table mat-table [dataSource]="filteredDataSource.slice(0,10)" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="codregistro">
+              <th mat-header-cell *matHeaderCellDef>Código</th>
+              <td mat-cell *matCellDef="let element"> {{element.codRegistro}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="nome">
+              <th mat-header-cell *matHeaderCellDef> Nome </th>
+              <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+            </ng-container>
+        
+        
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef > Selecionar </th>
+                <td mat-cell *matCellDef="let element" >
+                     <button mat-icon-button color="warn" (click)="closeDialog()" (click)="selectEscola(element.codRegistro)">
+                                                <mat-icon>add</mat-icon>
+                                              </button>
+                        </td>
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        
+    </div>
+        
+    
+</mat-dialog-content>
+</ng-template>
+
+
