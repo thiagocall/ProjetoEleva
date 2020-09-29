@@ -81,9 +81,12 @@ export class CadastrarTurmaComponent implements OnInit {
 
   selectEscola(codregistro: string){
     
-    this.selectedEscola = this.dataSource.find(x => x.codregistro == codregistro)
+    console.log(codregistro);
+    console.log(this.dataSource);
+    // this.selectedEscola = null;
+    this.selectedEscola = this.dataSource.find(x => x.codRegistro == codregistro)
     this.frmCadastro.patchValue({"codRegistro":this.selectedEscola.codRegistro,
-                                 "nome":this.selectedEscola.nome})
+    "nome":this.selectedEscola.nome})
   }
 
 
