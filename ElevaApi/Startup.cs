@@ -42,6 +42,9 @@ namespace ElevaApi
 
             //app.UseHttpsRedirection();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseRouting();
 
